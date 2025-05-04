@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -28,7 +29,19 @@ const Login = () => {
     e.preventDefault();
     if (validate()) {
       console.log("Form is valid. Proceed to API call.");
-      // TODO: backend login integration
+      // Simulate login success
+
+      const role = localStorage.getItem("role"); // Get role from storage
+
+      if (role === "hosteler") {
+        navigate("/hosteler-dashboard");
+      } else if (role === "dayscholar") {
+        navigate("/dayscholar-dashboard");
+      } else {
+        alert("Role not found. Please register again.");
+      }
+
+      // TODO: backend login integration later
     }
   };
 

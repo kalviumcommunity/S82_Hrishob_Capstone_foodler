@@ -2,7 +2,7 @@ Foodler - Home-Cooked Food Sharing Platform
 
 Project Idea
 
-Foodler is a web-based platform designed to connect hostelers craving home-cooked food with dayscholars who can bring it from home. The platform enables hostelers to request home-cooked meals, while dayscholars can accept these requests and deliver food. The system ensures trust and authenticity with a verification and rating system.
+Foodler is a web-based platform designed to connect hostelers craving home-cooked food with dayscholars who can bring it from home. The platform enables hostelers to request home-cooked meals,  while dayscholars can accept these requests and deliver food. The system ensures trust and authenticity with a verification and rating system.
 
 Brief Description
 
