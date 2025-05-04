@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User"); // ✅ Correct casing, match file name
+const User = require("../models/User"); 
 
-// Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
@@ -29,7 +28,7 @@ exports.registerUser = async (req, res) => {
     });
   } catch (error) {
     console.error("Register Error:", error.message);
-    res.status(500).json({ message: "Server error. Please try again later." });
+    res.status(500).json({ message: "Server error, Please try again later." });
   }
 };
 
@@ -37,7 +36,7 @@ exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: "Please provide email and password." });
+    return res.status(400).json({ message: "Please provide the email and password." });
   }
 
   try {
@@ -55,6 +54,6 @@ exports.loginUser = async (req, res) => {
     }
   } catch (error) {
     console.error("Login Error:", error.message);
-    res.status(500).json({ message: "Server error. Please try again later." });
+    res.status(500).json({ message: "Server error, Please try again later." });
   }
 };
