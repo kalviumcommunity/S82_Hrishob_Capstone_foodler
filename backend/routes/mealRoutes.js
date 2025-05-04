@@ -42,7 +42,7 @@ router.put("/:id", async (req, res) => {
 
     res.status(200).json(updatedMeal);
   } catch (err) {
-    res.status(500).json({ error: "Error updating meal", details: err.message });
+    res.status(500).json({ error: "Error in updating meal", details: err.message });
   }
 });
 
