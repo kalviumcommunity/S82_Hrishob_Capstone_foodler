@@ -1,13 +1,16 @@
+const jwt = require("jsonwebtoken");
+const User = require("../models/User"); // ✅ Correct casing, match file name
+
+// Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
-
 
 exports.registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
-    return res.status(400).json({ message: "Please fill in all fields." });
+    return res.status(400).json({ message: "Please fill in all the fields." });
   }
 
   try {
@@ -25,11 +28,10 @@ exports.registerUser = async (req, res) => {
       token: generateToken(user._id),
     });
   } catch (error) {
-    console.error(error.message);
+    console.error("Register Error:", error.message);
     res.status(500).json({ message: "Server error. Please try again later." });
   }
 };
-
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -52,7 +54,7 @@ exports.loginUser = async (req, res) => {
       res.status(401).json({ message: "Invalid email or password." });
     }
   } catch (error) {
-    console.error(error.message);
+    console.error("Login Error:", error.message);
     res.status(500).json({ message: "Server error. Please try again later." });
   }
 };
