@@ -6,6 +6,8 @@ const connectDB = require('./config/db'); // Remove .js extension in CommonJS
 const userRoutes = require("./routes/userRoutes")
 const mealRoutes = require("./routes/mealRoutes")
 const authRoutes = require("./routes/authRoutes")
+const otpRoutes = require("./routes/otpRoutes");
+
 dotenv.config(); // Load .env
 
 const app = express();
@@ -26,6 +28,7 @@ app.get('/', (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/meals",mealRoutes);
 app.use("/api/auth",authRoutes);
+app.use("/api/auth", otpRoutes);
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
