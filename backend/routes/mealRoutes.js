@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
     const savedMeal = await newMeal.save();
     res.status(201).json(savedMeal);
   } catch (err) {
-    res.status(500).json({ error: "Error creating meal", details: err.message });
+    res.status(500).json({ error: "Error in creating the meal", details: err.message });
   }
 });
 
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
     const meals = await Meal.find().sort({ createdAt: -1 });
     res.status(200).json(meals);
   } catch (err) {
-    res.status(500).json({ error: "Error in fetching meals", details: err.message });
+    res.status(500).json({ error: "Error in fetching the meals", details: err.message });
   }
 });
 
@@ -42,7 +42,7 @@ router.put("/:id", async (req, res) => {
 
     res.status(200).json(updatedMeal);
   } catch (err) {
-    res.status(500).json({ error: "Error in updating meal", details: err.message });
+    res.status(500).json({ error: "Error in updating the meal", details: err.message });
   }
 });
 
