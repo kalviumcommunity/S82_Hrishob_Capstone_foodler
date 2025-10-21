@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import GOO from "../firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,15 +12,10 @@ const Login = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(email)) {
-      newErrors.email = "Enter a valid email address";
-    }
+    if (!email) newErrors.email = "Email is required";
+    else if (!emailRegex.test(email)) newErrors.email = "Enter a valid email address";
 
-    if (!password) {
-      newErrors.password = "Password is required";
-    }
+    if (!password) newErrors.password = "Password is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -28,20 +24,15 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form is valid. Proceed to API call.");
-      // Simulate login success
+      const user = JSON.parse(localStorage.getItem("user"));
 
-      const role = localStorage.getItem("role"); // Get role from storage
-
-      if (role === "hosteler") {
-        navigate("/hosteler-dashboard");
-      } else if (role === "dayscholar") {
-        navigate("/dayscholar-dashboard");
-      } else {
-        alert("Role not found. Please register again.");
+      if (!user || user.email !== email || user.password !== password) {
+        alert("Invalid credentials or user not found.");
+        return;
       }
 
-      // TODO: backend login integration later
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      navigate("/dashboard"); // 🔁 Redirect to universal dashboard
     }
   };
 
@@ -90,6 +81,7 @@ const Login = () => {
             Login
           </button>
         </form>
+          <GOO/>
 
         <p className="mt-6 text-center text-gray-400">
           Don't have an account?{" "}

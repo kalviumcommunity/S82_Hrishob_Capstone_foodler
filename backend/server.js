@@ -8,7 +8,7 @@ const mealRoutes = require("./routes/mealRoutes")
 const authRoutes = require("./routes/authRoutes")
 const otpRoutes = require("./routes/otpRoutes");
 
-dotenv.config(); // Load .env
+dotenv.config(); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
