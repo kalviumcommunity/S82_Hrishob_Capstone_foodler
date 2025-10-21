@@ -1,24 +1,14 @@
-import React from "react";
-import HostelerDashboard from "./HostelerDashboard";
-import DayscholarDashboard from "./DayscholarDashboard";
+// src/pages/dashboard/Dashboard.jsx
+import HostelerDashboard from './HostelerDashboard';
+import DayscholarDashboard from './DayscholarDashboard';
 
 const Dashboard = () => {
-  const userRole = localStorage.getItem("role"); // Should be 'hosteler' or 'dayscholar'
+  const user = JSON.parse(localStorage.getItem('currentUser')); // 🔁 Use currentUser
 
-  return (
-    <div>
-      {userRole === "hosteler" ? (
-        <HostelerDashboard />
-      ) : userRole === "dayscholar" ? (
-        <DayscholarDashboard />
-      ) : (
-        <div className="text-white p-6">
-          <h2 className="text-2xl font-bold">Unknown Role 🤷‍♂️</h2>
-          <p>Please login again or contact support.</p>
-        </div>
-      )}
-    </div>
-  );
+  const role = user?.role;
+  if (role === 'hosteler') return <HostelerDashboard />;
+  if (role === 'dayscholar') return <DayscholarDashboard />;
+  return <div className="text-center text-white mt-10">Invalid Role or Not Logged In</div>;
 };
 
 export default Dashboard;

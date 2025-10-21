@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -7,10 +7,11 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "", // NEW
+    role: "",
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -42,13 +43,14 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Registration form is valid. Proceed to API call.");
-      console.log(formData);
+      console.log("Registration form is valid. Proceeding...");
 
-      // Store role in localStorage to simulate backend response
-      localStorage.setItem("role", formData.role);
+      // Save new user data (simulate DB)
+      localStorage.setItem("user", JSON.stringify(formData));
+      localStorage.setItem("currentUser", JSON.stringify(formData)); // Simulate login
 
-      // Redirect logic can go here later
+      // Navigate to shared dashboard
+      navigate("/dashboard");
     }
   };
 
