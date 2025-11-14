@@ -8,6 +8,7 @@ import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DayscholarDashboard from './pages/Dashboard/DayscholarDashboard';
 import HostelerDashboard from './pages/Dashboard/HostelerDashboard';
+import SelectRole from './selectRole';
 
 const App = () => {
   return (
@@ -16,11 +17,19 @@ const App = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} /> 
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/dashboard" element={<Dashboard/>}/>
-      <Route path="/dayscholarDashboard" element={<DayscholarDashboard/>}/>
-      <Route path="/hostelerDashboard" element={<HostelerDashboard/>}/>
+      <Route path="/dashboard" element={<Dashboard />} />
+
+      {/* ✅ Clean URLs for role-based dashboards */}
+      <Route path="/dayscholar-dashboard" element={<DayscholarDashboard />} />
+      <Route path="/hosteler-dashboard" element={<HostelerDashboard />} />
+
+      {/* Optional backward redirects (if you ever used camelCase before) */}
+      <Route path="/dayscholarDashboard" element={<Navigate to="/dayscholar-dashboard" />} />
+      <Route path="/hostelerDashboard" element={<Navigate to="/hosteler-dashboard" />} />
+
+      <Route path="/select-role" element={<SelectRole />} />
     </Routes>
   );
 };
